@@ -1,0 +1,20 @@
+[
+    {
+      "id": 1,
+			"avatarUrl": "https://source.unsplash.com/50x50/?people",
+      "fullName": "Gowa Gowa",
+			"email": "gowagowa@mail.com"
+    },
+    {
+      "id": 2,
+			"avatarUrl": "https://source.unsplash.com/50x50/?people",
+      "fullName": "Naran Naran",
+			"email": "NaranNaran@mail.com"
+    },
+    {
+      "id": 3,
+			"avatarUrl": "https://source.unsplash.com/50x50/?people",
+      "fullName": "Ara Ara",
+			"email": "AraAra@mail.com"
+    }
+]

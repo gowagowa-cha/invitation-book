@@ -32,6 +32,10 @@ function App() {
 		setValueInput(value);
 	}
 
+	function clear() {
+		setValueInput('')
+	}
+
 	return (
 		<div className='container'>
 			<div className='box'>
@@ -46,25 +50,29 @@ function App() {
 								type='text'
 								placeholder='Найти пользователя'
 							/>
-							<img className='search__icon-close' src={CloseBtn} alt='Закрыть' />
+							{valueInput && <img onClick={clear} className='search__icon-close' src={CloseBtn} alt='Закрыть' />}
 						</label>
 					</div>
 
 					<div className='users'>
-						{users.filter((obj) => obj.fullName.toLocaleLowerCase().includes(valueInput.toLocaleLowerCase())).map((obj) => (
-							<div key={obj.id} className='users__box'>
-								<div className='users__left'>
-									<img src={obj.avatarUrl} alt='Пользователь' />
-									<div className='users__inner'>
-										<h4 className='users__name'>{obj.fullName}</h4>
-										<p className='users__subtext'>{obj.email}</p>
+						{users
+							.filter((obj) =>
+								obj.fullName.toLocaleLowerCase().includes(valueInput.toLocaleLowerCase()),
+							)
+							.map((obj) => (
+								<div key={obj.id} className='users__box'>
+									<div className='users__left'>
+										<img src={obj.avatarUrl} alt='Пользователь' />
+										<div className='users__inner'>
+											<h4 className='users__name'>{obj.fullName}</h4>
+											<p className='users__subtext'>{obj.email}</p>
+										</div>
+									</div>
+									<div className='users__right'>
+										<button type='button' className='close-btn'></button>
 									</div>
 								</div>
-								<div className='users__right'>
-									<button type='button' className='close-btn'></button>
-								</div>
-							</div>
-						))}
+							))}
 					</div>
 
 					<div className='form__btn'>

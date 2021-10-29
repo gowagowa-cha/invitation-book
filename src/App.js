@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.css';
 import CloseBtn from './assets/images/close-btn.svg';
+import UserItems from './Components/UserItems.js';
 
 const arr = [
 	{
@@ -26,14 +27,23 @@ const arr = [
 function App() {
 	const [users, setUsers] = React.useState(arr);
 	const [valueInput, setValueInput] = React.useState('');
+	const [list, setList] = React.useState([]);
 
 	function handleChangeInput(e) {
 		const { value } = e.target;
 		setValueInput(value);
 	}
 
-	function clear() {
-		setValueInput('')
+	function clearSearchInput() {
+		setValueInput('');
+	}
+
+	function addUsers(id) {
+		if (list.find((obj) => obj.id === id)) {
+			setList(list.filter((o) => o.id !== id))
+		} else {
+			setList([...list, { id }]);
+		}
 	}
 
 	return (
@@ -50,7 +60,14 @@ function App() {
 								type='text'
 								placeholder='Найти пользователя'
 							/>
-							{valueInput && <img onClick={clear} className='search__icon-close' src={CloseBtn} alt='Закрыть' />}
+							{valueInput && (
+								<img
+									onClick={clearSearchInput}
+									className='search__icon-close'
+									src={CloseBtn}
+									alt='Закрыть'
+								/>
+							)}
 						</label>
 					</div>
 
@@ -60,18 +77,7 @@ function App() {
 								obj.fullName.toLocaleLowerCase().includes(valueInput.toLocaleLowerCase()),
 							)
 							.map((obj) => (
-								<div key={obj.id} className='users__box'>
-									<div className='users__left'>
-										<img src={obj.avatarUrl} alt='Пользователь' />
-										<div className='users__inner'>
-											<h4 className='users__name'>{obj.fullName}</h4>
-											<p className='users__subtext'>{obj.email}</p>
-										</div>
-									</div>
-									<div className='users__right'>
-										<button type='button' className='close-btn'></button>
-									</div>
-								</div>
+								<UserItems {...obj} onAdd={addUsers} isAdded={list.find((o) => o.id === obj.id)} />
 							))}
 					</div>
 

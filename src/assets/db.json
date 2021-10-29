@@ -1,20 +1,32 @@
-[
+{
+  "people": [
     {
       "id": 1,
-			"avatarUrl": "https://source.unsplash.com/50x50/?people",
+      "avatarUrl": "https://source.unsplash.com/50x50/?people&1",
       "fullName": "Gowa Gowa",
-			"email": "gowagowa@mail.com"
+      "email": "gowagowa@mail.com"
     },
     {
       "id": 2,
-			"avatarUrl": "https://source.unsplash.com/50x50/?people",
+      "avatarUrl": "https://source.unsplash.com/50x50/?people&2",
       "fullName": "Naran Naran",
-			"email": "NaranNaran@mail.com"
+      "email": "NaranNaran@mail.com"
     },
     {
       "id": 3,
-			"avatarUrl": "https://source.unsplash.com/50x50/?people",
+      "avatarUrl": "https://source.unsplash.com/50x50/?people&3",
       "fullName": "Ara Ara",
-			"email": "AraAra@mail.com"
+      "email": "AraAra@mail.com"
     }
-]
+  ],
+  "list": [
+    [
+      {
+        "id": 1
+      },
+      {
+        "id": 2
+      }
+    ]
+  ]
+}

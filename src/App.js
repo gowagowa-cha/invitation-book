@@ -2,32 +2,15 @@ import React from 'react';
 import './index.css';
 import CloseBtn from './assets/images/close-btn.svg';
 import UserItems from './Components/UserItems.js';
-
-const arr = [
-	{
-		id: 1,
-		avatarUrl: 'https://source.unsplash.com/50x50/?people&1',
-		fullName: 'Gowa Gowa',
-		email: 'gowagowa@mail.com',
-	},
-	{
-		id: 2,
-		avatarUrl: 'https://source.unsplash.com/50x50/?people&2',
-		fullName: 'Naran Naran',
-		email: 'NaranNaran@mail.com',
-	},
-	{
-		id: 3,
-		avatarUrl: 'https://source.unsplash.com/50x50/?people&3',
-		fullName: 'Ara Ara',
-		email: 'AraAra@mail.com',
-	},
-];
+import skeletonPng from './assets/images/skeleton.png';
+import { Success } from './Components/Success';
 
 function App() {
-	const [users, setUsers] = React.useState(arr);
+	const [users, setUsers] = React.useState([]);
 	const [valueInput, setValueInput] = React.useState('');
 	const [list, setList] = React.useState([]);
+	const [loading, setLoading] = React.useState(true);
+	const [submited, setSubmited] = React.useState(false);
 
 	function handleChangeInput(e) {
 		const { value } = e.target;
@@ -40,12 +23,52 @@ function App() {
 
 	function addUsers(id) {
 		if (list.find((obj) => obj.id === id)) {
-			setList(list.filter((o) => o.id !== id))
+			setList(list.filter((o) => o.id !== id));
 		} else {
 			setList([...list, { id }]);
 		}
 	}
 
+	const  sendListRequest = async() => {
+		await fetch('http://localhost:3001/list', {
+			method: 'POST',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(list),
+		});
+		setSubmited(true);
+	}
+
+	function onHandleClickedSubmit() {
+		if(list.length) {
+			sendListRequest();
+		} else {
+			alert("Список пуст")
+		}
+	}
+
+	function onCloseSubmit() {
+		setSubmited(false);
+	}
+
+	React.useEffect(() => {
+		fetch('http://localhost:3001/people')
+			.then((res) => res.json())
+			.then((json) => setUsers(json));
+		setLoading(false);
+	}, []);
+
+	if (submited) {
+		return (
+			<div className='container'>
+				<div className='box'>
+					<Success onClose={onCloseSubmit} />
+				</div>
+			</div>
+		);
+	}
 	return (
 		<div className='container'>
 			<div className='box'>
@@ -72,18 +95,26 @@ function App() {
 					</div>
 
 					<div className='users'>
-						{users
-							.filter((obj) =>
-								obj.fullName.toLocaleLowerCase().includes(valueInput.toLocaleLowerCase()),
-							)
-							.map((obj) => (
-								<UserItems {...obj} onAdd={addUsers} isAdded={list.find((o) => o.id === obj.id)} />
-							))}
+						{loading ? (
+							<img src={skeletonPng} alt='skeleton' />
+						) : (
+							users
+								.filter((obj) =>
+									obj.fullName.toLocaleLowerCase().includes(valueInput.toLocaleLowerCase()),
+								)
+								.map((obj) => (
+									<UserItems
+										{...obj}
+										onAdd={addUsers}
+										isAdded={list.find((o) => o.id === obj.id)}
+									/>
+								))
+						)}
 					</div>
 
 					<div className='form__btn'>
 						<button className='form__btn-cancel'>Отмена</button>
-						<button className='form__btn-submit' type='submit'>
+						<button onClick={onHandleClickedSubmit} className='form__btn-submit' type='submit'>
 							Отправить
 						</button>
 					</div>

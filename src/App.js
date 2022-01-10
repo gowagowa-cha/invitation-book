@@ -30,7 +30,7 @@ function App() {
 	}
 
 	const  sendListRequest = async() => {
-		await fetch('http://localhost:3001/list', {
+		await fetch('https://619d626a131c600017088ee6.mockapi.io/list', {
 			method: 'POST',
 			headers: {
 				Accept: 'application/json',
@@ -54,7 +54,7 @@ function App() {
 	}
 
 	React.useEffect(() => {
-		fetch('http://localhost:3001/people')
+		fetch('https://619d626a131c600017088ee6.mockapi.io/people')
 			.then((res) => res.json())
 			.then((json) => setUsers(json));
 		setLoading(false);

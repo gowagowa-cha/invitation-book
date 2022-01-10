@@ -1,5 +1,5 @@
 
 # `Книга приглашений`
 
-### для запуска приложения запустите Json server командой yarn fake, далее и yarn start
+### https://gowagowa-cha.github.io/invitation-book/
 

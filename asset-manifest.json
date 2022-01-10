@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/invitation-book/static/css/main.48960769.chunk.css",
+    "main.js": "/invitation-book/static/js/main.204f1833.chunk.js",
+    "main.js.map": "/invitation-book/static/js/main.204f1833.chunk.js.map",
+    "runtime-main.js": "/invitation-book/static/js/runtime-main.f6ee0cf0.js",
+    "runtime-main.js.map": "/invitation-book/static/js/runtime-main.f6ee0cf0.js.map",
+    "static/js/2.778a6e9e.chunk.js": "/invitation-book/static/js/2.778a6e9e.chunk.js",
+    "static/js/2.778a6e9e.chunk.js.map": "/invitation-book/static/js/2.778a6e9e.chunk.js.map",
+    "index.html": "/invitation-book/index.html",
+    "static/css/main.48960769.chunk.css.map": "/invitation-book/static/css/main.48960769.chunk.css.map",
+    "static/js/2.778a6e9e.chunk.js.LICENSE.txt": "/invitation-book/static/js/2.778a6e9e.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/invitation-book/static/media/Roboto-Medium.7429a63c.ttf",
+    "static/media/close-btn.73fedefa.svg": "/invitation-book/static/media/close-btn.73fedefa.svg",
+    "static/media/successfully.af375fcc.svg": "/invitation-book/static/media/successfully.af375fcc.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f6ee0cf0.js",
+    "static/js/2.778a6e9e.chunk.js",
+    "static/css/main.48960769.chunk.css",
+    "static/js/main.204f1833.chunk.js"
+  ]
+}
